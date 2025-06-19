@@ -1,42 +1,179 @@
+/*#root {*/
+/*  max-width: 1280px;*/
+/*  margin: 0 auto;*/
+/*  padding: 2rem;*/
+/*  text-align: center;*/
+/*}*/
+
+/*.logo {*/
+/*  height: 6em;*/
+/*  padding: 1.5em;*/
+/*  will-change: filter;*/
+/*  transition: filter 300ms;*/
+/*}*/
+/*.logo:hover {*/
+/*  filter: drop-shadow(0 0 2em #646cffaa);*/
+/*}*/
+/*.logo.react:hover {*/
+/*  filter: drop-shadow(0 0 2em #61dafbaa);*/
+/*}*/
+
+/*@keyframes logo-spin {*/
+/*  from {*/
+/*    transform: rotate(0deg);*/
+/*  }*/
+/*  to {*/
+/*    transform: rotate(360deg);*/
+/*  }*/
+/*}*/
+
+/*@media (prefers-reduced-motion: no-preference) {*/
+/*  a:nth-of-type(2) .logo {*/
+/*    animation: logo-spin infinite 20s linear;*/
+/*  }*/
+/*}*/
+
+/*.card {*/
+/*  padding: 2em;*/
+/*}*/
+
+/*.read-the-docs {*/
+/*  color: #888;*/
+/*}*/
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    /*background: linear-gradient(135deg, #fffbe0 0%, #ffe066 100%);*/
+    /*background: rgb(255 231 170);*/
+    background: rgb(249 221 147);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', Arial, sans-serif ;
+}
+
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+    background: rgba(255, 255, 224, 0.95);
+    /*background: linear-gradient(135deg, #fffbe0 0%, #ffe066 100%);*/
+    border-radius: 24px;
+    /*box-shadow: 0 8px 32px rgba(255, 200, 0, 0.15);*/
+    padding: 3rem 2rem;
+    max-width: 480px;
+    width: 100%;
+    text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/*h1 {*/
+/*    color: rgb(255, 89, 0);*/
+/*    display: block;*/
+/*    font-family: Buzz, sans-serif;*/
+/*    font-size: 120px;*/
+/*    font-weight: 900;*/
+/*    line-height: 150px;*/
+/*    margin-top: 20px;*/
+/*    text-transform: uppercase;*/
+/*}*/
+
+.funky-title {
+    font-family: 'Luckiest Guy', cursive, sans-serif;
+    font-size: 4rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    /*background: linear-gradient(90deg, #ff6f00 0%, #f50057 50%, #00e676 100%);*/
+    -webkit-background-clip: text;
+        color: rgb(255, 89, 0);
+
+    /*-webkit-text-fill-color: transparent;*/
+    /*text-shadow:*/
+    /*        0 2px 12px #f50057aa,*/
+    /*        0 0px 32px #00e67688;*/
+    margin-bottom: 1.5rem;
+    margin-top: 1rem;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.search-bar {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.search-bar input {
+    padding: 0.7em 1em;
+    border-radius: 8px;
+    border: 1px solid #ffe066;
+    font-size: 1.1em;
+    background: #fffde4;
+    outline: none;
+    transition: border 0.2s;
 }
 
-.card {
-  padding: 2em;
+.search-bar input:focus {
+    border: 1.5px solid #ffb300;
 }
 
-.read-the-docs {
-  color: #888;
+.search-bar button {
+    background: linear-gradient(90deg, #ffec00 0%, #ffb300 100%);
+    color: #333;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    padding: 0.7em 1.5em;
+    font-size: 1.1em;
+    cursor: pointer;
+    box-shadow: 0 2px 8px #ffe06655;
+    transition: background 0.2s;
 }
+
+.search-bar button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.cocktail-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.cocktail-card {
+    background: rgba(255, 255, 224, 0.95);
+    border-radius: 18px;
+    box-shadow: 0 4px 16px #ffe06655;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    transition: transform 0.15s;
+}
+
+.cocktail-card:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 8px 32px #ffb30055;
+}
+
+.cocktail-card img {
+    width: 100px;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 8px #ffe06655;
+}
+
+.cocktail-card h2 {
+    font-size: 1.3rem;
+    margin: 0.5rem 0 0.2rem 0;
+    color: #ffb300;
+}
+
+.cocktail-card p {
+    margin: 0.2rem 0;
+    color: #555;
+    font-size: 1em;
+}
+
+.error {
+    color: #ff0080;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
