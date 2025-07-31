@@ -43,7 +43,7 @@
 
 body {
     min-height: 100vh;
-    margin: 0;
+    margin: 20px;
     /*background: linear-gradient(135deg, #fffbe0 0%, #ffe066 100%);*/
     /*background: rgb(255 231 170);*/
     background: rgb(249 221 147);
@@ -59,7 +59,7 @@ body {
     border-radius: 24px;
     /*box-shadow: 0 8px 32px rgba(255, 200, 0, 0.15);*/
     padding: 3rem 2rem;
-    max-width: 480px;
+    max-width: 650px;
     width: 100%;
     text-align: center;
 }
@@ -132,19 +132,21 @@ body {
 }
 
 .cocktail-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin-top: 2rem;
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+    flex-wrap: nowrap;
 }
 
 .cocktail-card {
+    display: flex;
     background: rgba(255, 255, 224, 0.95);
     border-radius: 18px;
     box-shadow: 0 4px 16px #ffe06655;
     padding: 1.5rem 1rem;
     text-align: center;
     transition: transform 0.15s;
+    gap: 1rem;
 }
 
 .cocktail-card:hover {
@@ -152,11 +154,12 @@ body {
     box-shadow: 0 8px 32px #ffb30055;
 }
 
-.cocktail-card img {
-    width: 100px;
+.cocktail-card-img {
+    width: 295px;
+    height: 295px;
     border-radius: 12px;
-    margin-bottom: 1rem;
     box-shadow: 0 2px 8px #ffe06655;
+
 }
 
 .cocktail-card h2 {
