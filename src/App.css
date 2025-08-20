@@ -50,7 +50,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Segoe UI', Arial, sans-serif ;
+    font-family: 'Segoe UI', Arial, sans-serif;
 }
 
 #root {
@@ -58,7 +58,7 @@ body {
     /*background: linear-gradient(135deg, #fffbe0 0%, #ffe066 100%);*/
     border-radius: 24px;
     /*box-shadow: 0 8px 32px rgba(255, 200, 0, 0.15);*/
-    padding: 3rem 2rem;
+    padding: 2rem 2rem;
     max-width: 650px;
     width: 100%;
     text-align: center;
@@ -75,6 +75,15 @@ body {
 /*    text-transform: uppercase;*/
 /*}*/
 
+.title-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    flex-direction: row;
+    margin-bottom: 1rem;
+}
+
 .funky-title {
     font-family: 'Luckiest Guy', cursive, sans-serif;
     font-size: 4rem;
@@ -82,14 +91,19 @@ body {
     letter-spacing: 4px;
     /*background: linear-gradient(90deg, #ff6f00 0%, #f50057 50%, #00e676 100%);*/
     -webkit-background-clip: text;
-        color: rgb(255, 89, 0);
+    color: rgb(255, 89, 0);
 
     /*-webkit-text-fill-color: transparent;*/
     /*text-shadow:*/
     /*        0 2px 12px #f50057aa,*/
     /*        0 0px 32px #00e67688;*/
-    margin-bottom: 1.5rem;
-    margin-top: 1rem;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+}
+
+.img-title-palm {
+    width: 70px;
+    height: 70px;
 }
 
 .search-bar {
@@ -140,7 +154,7 @@ body {
 
 .cocktail-card {
     display: flex;
-    background: rgba(255, 255, 224, 0.95);
+    background: rgba(255, 255, 224, 0.95); /* light warm yellow, matches the theme */
     border-radius: 18px;
     box-shadow: 0 4px 16px #ffe06655;
     padding: 1.5rem 1rem;
@@ -168,10 +182,17 @@ body {
     color: #ffb300;
 }
 
-.cocktail-card p {
-    margin: 0.2rem 0;
-    color: #555;
-    font-size: 1em;
+.cocktail-card-instructions {
+    margin: 0.5rem 0;
+    /*color: #555;*/
+    /*font-size: 1em;*/
+    /*text-align: center;*/
+}
+
+.ingredients-title {
+    /*font-size: 1.2rem;*/
+    /*color: #ffb300;*/
+    margin-top: 1rem;
 }
 
 .error {
@@ -180,3 +201,13 @@ body {
     margin-top: 1rem;
 }
 
+.cocktail-card-ingredients-list {
+ text-align: left;
+
+}
+
+.custom-line {
+    border-top: 1px solid black; /* Creates a 2px solid black line */
+    width: 100%; /* Adjust width as needed */
+    margin: 20px 0; /* Add some spacing above and below */
+}

@@ -19,7 +19,7 @@ function App() {
             //     `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${encodeURIComponent(query)}`
             // )
             const res = await fetch(
-                `http://localhost:3000/drinks`
+                `http://localhost:3000/drinks/` + query
             )
             const data = await res.json()
             setResults(data || [])
@@ -33,7 +33,9 @@ function App() {
 
     return (
         <>
-            <h1 className="funky-title">Surprise me</h1>
+            <div className="title-area"><h1 className="funky-title">Surprise me</h1>
+                <img className="img-title-palm" src="/palm-three-drawn.png"/>
+            </div>
             <form className="search-bar" onSubmit={searchCocktails}>
                 <input
                     type="text"
@@ -50,11 +52,24 @@ function App() {
                 {results.map(drink => (
                     <div className="cocktail-card" key={drink.id}>
                         <img className="cocktail-card-img" src={drink.image_example} alt={drink.name}/>
-                        <div><h2>{drink.name}</h2>
-                            <p>{drink.instructions}</p></div>
+                        <div>
+                            <h2>{drink.name}</h2>
+                            <p className="cocktail-card-instructions">{drink.instructions}</p>
+                            <p className="ingredients-title"><strong>Ingredients</strong></p>
+                            {/*{drink.ingredients && drink.ingredients.length > 0 && (*/}
+                            {/*    // drink.ingredients.map((ingredient, index) => ({ingredient.quantity} {ingredient.name}))*/}
+                            {/*    // {drink.ingredients.map((ingredient, index) => ())}*/}
+                            {drink.ingredients && drink.ingredients.length > 0 && (<ul className="cocktail-card-ingredients-list">
+                                {drink.ingredients.map((ingredient, index) => (
+                                    <li key={index}>{ingredient.quantity} {ingredient.name}</li>
+                                ))}
+                            </ul>)}
+                            {/*)}*/}
+                        </div>
                     </div>
                 ))}
             </div>
+            <div className="custom-line"></div>
             <p>{appExplication}</p>
         </>
     )
