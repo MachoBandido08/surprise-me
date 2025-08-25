@@ -19,7 +19,7 @@ function App() {
             //     `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${encodeURIComponent(query)}`
             // )
             const res = await fetch(
-                `http://localhost:3000/drinks/` + query
+                `https://surprise-me-backend.onrender.com/drinks/` + query
             )
             const data = await res.json()
             setResults(data || [])
