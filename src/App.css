@@ -145,6 +145,116 @@ body {
     cursor: not-allowed;
 }
 
+.input-wrapper {
+    position: relative;
+    display: flex;
+}
+
+.input-wrapper input {
+    width: 100%;
+}
+
+.suggestions {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    z-index: 10;
+    list-style: none;
+    margin: 0;
+    padding: 0.3rem;
+    background: #fffde4;
+    border: 1px solid #ffb300;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px #ffe06655;
+    text-align: left;
+    max-height: 240px;
+    overflow-y: auto;
+}
+
+.suggestion-item {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 0.5em 0.7em;
+    font-size: 1em;
+    color: #333;
+    border-radius: 6px;
+    cursor: pointer;
+    text-transform: capitalize;
+}
+
+.suggestion-item:hover,
+.suggestion-item.active {
+    background: linear-gradient(90deg, #ffec00 0%, #ffb300 100%);
+    font-weight: bold;
+}
+
+.search-bar .add-btn {
+    background: #fffde4;
+    color: #333;
+    border: 1px solid #ffb300;
+    box-shadow: none;
+}
+
+.ingredient-chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-bottom: 2rem;
+}
+
+.ingredient-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: linear-gradient(90deg, #ffec00 0%, #ffb300 100%);
+    color: #333;
+    font-weight: bold;
+    border-radius: 999px;
+    padding: 0.35em 0.4em 0.35em 0.9em;
+    font-size: 1em;
+    box-shadow: 0 2px 8px #ffe06655;
+    text-transform: capitalize;
+}
+
+.ingredient-chip-remove {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.4em;
+    height: 1.4em;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.12);
+    color: #333;
+    font-size: 1em;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.ingredient-chip-remove:hover {
+    background: rgba(0, 0, 0, 0.28);
+}
+
+.clear-all-btn {
+    background: none;
+    border: none;
+    color: #b26a00;
+    font-size: 0.9em;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 0 0.4em;
+}
+
+.clear-all-btn:hover {
+    color: #ff5900;
+}
+
 .cocktail-list {
     display: flex;
     gap: 15px;
