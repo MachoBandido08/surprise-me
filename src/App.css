@@ -106,6 +106,14 @@ body {
     height: 70px;
 }
 
+.app-explication {
+    margin: 0 auto 2rem auto;
+    max-width: 520px;
+    color: #6b5a2a;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
 .search-bar {
     display: flex;
     justify-content: center;

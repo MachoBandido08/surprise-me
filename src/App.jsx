@@ -49,7 +49,7 @@ function App() {
             .slice(0, 6)
         : []
 
-    const appExplication = `Cette application a pour but de vous aider à trouver des cocktails en fonction des ingrédients que vous avez. Vous pouvez entrer un ou plusieurs ingrédients, et l'application vous proposera une liste de cocktails qui les contiennent.`;
+    const appExplication = `This app helps you find cocktails based on the ingredients you already have. Add one or more ingredients, and we'll show you a list of cocktails you can make with them.`;
 
     const addIngredient = (value) => {
         const trimmed = value.trim().toLowerCase()
@@ -84,9 +84,6 @@ function App() {
             // Enter/comma confirms: pick the highlighted suggestion, else the typed text
             e.preventDefault()
             addIngredient(activeIndex >= 0 ? suggestions[activeIndex] : input)
-        } else if (e.key === 'Backspace' && !input && ingredients.length > 0) {
-            // Backspace on an empty field removes the last chip
-            removeIngredient(ingredients[ingredients.length - 1])
         }
     }
 
@@ -122,11 +119,12 @@ function App() {
             <div className="title-area"><h1 className="funky-title">Surprise me</h1>
                 <img className="img-title-palm" src="/palm-three-drawn.png"/>
             </div>
+            <p className="app-explication">{appExplication}</p>
             <form className="search-bar" onSubmit={searchCocktails}>
                 <div className="input-wrapper">
                     <input
                         type="text"
-                        placeholder="Enter an ingredient, then press Enter..."
+                        placeholder="Enter an ingredient..."
                         value={input}
                         onChange={handleInputChange}
                         onKeyDown={handleInputKeyDown}
@@ -166,7 +164,7 @@ function App() {
                     onClick={() => addIngredient(input)}
                     disabled={!input.trim()}
                 >
-                    Add
+                    Add ingredient
                 </button>
                 <button
                     type="submit"
@@ -221,8 +219,6 @@ function App() {
                     </div>
                 ))}
             </div>
-            <div className="custom-line"></div>
-            <p>{appExplication}</p>
         </>
     )
 }
