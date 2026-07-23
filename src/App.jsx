@@ -49,7 +49,7 @@ function App() {
             .slice(0, 6)
         : []
 
-    const appExplication = `This app helps you find cocktails based on the ingredients you already have. Add one or more ingredients, and we'll show you a list of cocktails you can make with them.`;
+    const appDescription = `This app helps you find cocktails based on the ingredients you already have. Add one or more ingredients, and we'll show you a list of cocktails you can make with them.`;
 
     const addIngredient = (value) => {
         const trimmed = value.trim().toLowerCase()
@@ -119,7 +119,7 @@ function App() {
             <div className="title-area"><h1 className="funky-title">Surprise me</h1>
                 <img className="img-title-palm" src="/palm-three-drawn.png"/>
             </div>
-            <p className="app-explication">{appExplication}</p>
+            <p className="app-description">{appDescription}</p>
             <form className="search-bar" onSubmit={searchCocktails}>
                 <div className="input-wrapper">
                     <input
