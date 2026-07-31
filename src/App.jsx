@@ -42,6 +42,15 @@ function App() {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(ingredients))
     }, [ingredients])
 
+    // Keep the keyboard-highlighted suggestion scrolled into view.
+    useEffect(() => {
+        if (activeIndex >= 0) {
+            document
+                .getElementById(`suggestion-${activeIndex}`)
+                ?.scrollIntoView({block: 'nearest'})
+        }
+    }, [activeIndex])
+
     const query = input.trim().toLowerCase()
     const suggestions = query
         ? COMMON_INGREDIENTS
