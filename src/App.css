@@ -187,6 +187,8 @@ body {
     margin: 8px 0 0;
     list-style: none;
     padding: 0.4rem;
+    /* Leave a gap above/below the item when scrolled into view via keyboard */
+    scroll-padding-block: 0.85rem;
     background: var(--surface-solid);
     border: 1px solid rgba(255, 107, 53, 0.18);
     border-radius: var(--radius);
