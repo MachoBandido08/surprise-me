@@ -180,7 +180,6 @@ body {
 .input-wrapper {
     position: relative;
     display: flex;
-    flex-direction: column;
     flex: 1;
     min-width: 0;
 }
@@ -256,9 +255,13 @@ body {
 /* ---------- Suggestions dropdown ---------- */
 
 .suggestions {
-    width: 100%;
-    margin: 8px 0 0;
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    z-index: 20;
     list-style: none;
+    margin: 0;
     padding: 0.4rem;
     /* Leave a gap above/below the item when scrolled into view via keyboard */
     scroll-padding-block: 0.85rem;
