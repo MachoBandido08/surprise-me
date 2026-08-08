@@ -109,6 +109,9 @@ body {
 #root {
     position: relative;
     z-index: 1;
+    /* Center vertically; auto margins collapse gracefully when the card is
+       taller than the viewport, so tall content is never clipped. */
+    margin-block: auto;
     background: var(--surface);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
