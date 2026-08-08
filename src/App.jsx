@@ -99,11 +99,13 @@ function App() {
                 `https://surprise-me-backend.onrender.com/drinks/` +
                 encodeURIComponent(allIngredients.join(','))
             )
+            if (!res.ok) throw new Error(`Request failed with status ${res.status}`)
             const data = await res.json()
-            setResults(data || [])
-            if (!data) setError('No cocktails found.')
+            const drinks = Array.isArray(data) ? data : []
+            setResults(drinks)
+            if (drinks.length === 0) setError('No cocktails found.')
         } catch (err) {
-            console.log('Error fetching cocktails: ', err)
+            console.error('Error fetching cocktails: ', err)
             setError('Error fetching cocktails.')
         }
         setLoading(false)
@@ -202,15 +204,13 @@ function App() {
                             <h2>{drink.name}</h2>
                             <p className="cocktail-card-instructions">{drink.instructions}</p>
                             <p className="ingredients-title"><strong>Ingredients</strong></p>
-                            {/*{drink.ingredients && drink.ingredients.length > 0 && (*/}
-                            {/*    // drink.ingredients.map((ingredient, index) => ({ingredient.quantity} {ingredient.name}))*/}
-                            {/*    // {drink.ingredients.map((ingredient, index) => ())}*/}
-                            {drink.ingredients && drink.ingredients.length > 0 && (<ul className="cocktail-card-ingredients-list">
-                                {drink.ingredients.map((ingredient, index) => (
-                                    <li key={index}>{ingredient.quantity} {ingredient.name}</li>
-                                ))}
-                            </ul>)}
-                            {/*)}*/}
+                            {drink.ingredients && drink.ingredients.length > 0 && (
+                                <ul className="cocktail-card-ingredients-list">
+                                    {drink.ingredients.map((ingredient, index) => (
+                                        <li key={index}>{ingredient.quantity} {ingredient.name}</li>
+                                    ))}
+                                </ul>
+                            )}
                         </div>
                     </div>
                 ))}
