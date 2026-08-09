@@ -111,6 +111,41 @@ function App() {
         setLoading(false)
     }
 
+    const renderDrink = (drink) => {
+        const missing = drink.missing || []
+        const missingSet = new Set(missing)
+        return (
+            <div className="cocktail-card" key={drink.id}>
+                <img className="cocktail-card-img" src={drink.image_example} alt={drink.name}/>
+                <div>
+                    <div className="cocktail-card-header">
+                        <h2>{drink.name}</h2>
+                        {drink.makeable
+                            ? <span className="badge badge-ready">✓ You have everything</span>
+                            : missing.length > 0 &&
+                            <span className="badge badge-missing">Missing {missing.length}</span>}
+                    </div>
+                    <p className="cocktail-card-instructions">{drink.instructions}</p>
+                    <p className="ingredients-title"><strong>Ingredients</strong></p>
+                    {drink.ingredients && drink.ingredients.length > 0 && (
+                        <ul className="cocktail-card-ingredients-list">
+                            {drink.ingredients.map((ingredient, index) => (
+                                <li key={index}
+                                    className={missingSet.has(ingredient.name) ? 'ingredient-missing' : undefined}>
+                                    {ingredient.quantity} {ingredient.name}
+                                    {missingSet.has(ingredient.name) && <span className="need-tag"> — need</span>}
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </div>
+            </div>
+        )
+    }
+
+    const makeableDrinks = results.filter(d => d.makeable)
+    const partialDrinks = results.filter(d => !d.makeable)
+
     return (
         <>
             <div className="title-area"><h1 className="funky-title">Surprise me</h1>
@@ -197,23 +232,14 @@ function App() {
             )}
             {error && <p className="error">{error}</p>}
             <div className="cocktail-list">
-                {results.map(drink => (
-                    <div className="cocktail-card" key={drink.id}>
-                        <img className="cocktail-card-img" src={drink.image_example} alt={drink.name}/>
-                        <div>
-                            <h2>{drink.name}</h2>
-                            <p className="cocktail-card-instructions">{drink.instructions}</p>
-                            <p className="ingredients-title"><strong>Ingredients</strong></p>
-                            {drink.ingredients && drink.ingredients.length > 0 && (
-                                <ul className="cocktail-card-ingredients-list">
-                                    {drink.ingredients.map((ingredient, index) => (
-                                        <li key={index}>{ingredient.quantity} {ingredient.name}</li>
-                                    ))}
-                                </ul>
-                            )}
-                        </div>
-                    </div>
-                ))}
+                {makeableDrinks.length > 0 && (
+                    <h3 className="results-heading">Ready to make ({makeableDrinks.length})</h3>
+                )}
+                {makeableDrinks.map(renderDrink)}
+                {partialDrinks.length > 0 && (
+                    <h3 className="results-heading">Almost there — missing a few ingredients</h3>
+                )}
+                {partialDrinks.map(renderDrink)}
             </div>
         </>
     )

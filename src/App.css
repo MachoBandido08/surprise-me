@@ -383,6 +383,49 @@ body {
     gap: 1.25rem;
 }
 
+.results-heading {
+    text-align: left;
+    margin: 0.5rem 0 -0.25rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--ink);
+}
+
+.cocktail-card-header {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.2em 0.6em;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+
+.badge-ready {
+    background: rgba(46, 158, 107, 0.15);
+    color: #1f7a50;
+}
+
+.badge-missing {
+    background: rgba(201, 138, 0, 0.16);
+    color: #9a6a00;
+}
+
+.ingredient-missing {
+    color: #b26a00;
+}
+
+.need-tag {
+    font-size: 0.82em;
+    font-weight: 600;
+    opacity: 0.8;
+}
+
 .cocktail-card {
     display: flex;
     align-items: flex-start;
