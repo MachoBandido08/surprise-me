@@ -5,6 +5,10 @@ import './App.css'
 
 const STORAGE_KEY = 'surprise-me-ingredients'
 
+// Mirror the backend's validation limits so the user gets instant feedback.
+const MAX_INGREDIENTS = 20
+const MAX_INGREDIENT_LENGTH = 60
+
 // Load previously saved ingredients so they survive a page reload / revisit.
 const loadIngredients = () => {
     try {
@@ -46,9 +50,16 @@ function App() {
 
     const appDescription = `This app helps you find cocktails based on the ingredients you already have. Add one or more ingredients, and we'll show you a list of cocktails you can make with them. Your ingredients are saved automatically, so they'll still be here when you close your browser and come back later.`;
 
+    const atMax = ingredients.length >= MAX_INGREDIENTS
+
     const addIngredient = (value) => {
         const trimmed = value.trim().toLowerCase()
-        if (trimmed && !ingredients.includes(trimmed)) {
+        if (
+            trimmed &&
+            trimmed.length <= MAX_INGREDIENT_LENGTH &&
+            !ingredients.includes(trimmed) &&
+            ingredients.length < MAX_INGREDIENTS
+        ) {
             setIngredients([...ingredients, trimmed])
         }
         setInput('')
@@ -99,16 +110,24 @@ function App() {
                 `https://surprise-me-backend.onrender.com/drinks/` +
                 encodeURIComponent(allIngredients.join(','))
             )
-            if (!res.ok) throw new Error(`Request failed with status ${res.status}`)
+            if (!res.ok) {
+                // Show the backend's own message (e.g. "Too many ingredients (max 20).")
+                const body = await res.json().catch(() => null)
+                throw new Error(body?.error || `Something went wrong (${res.status}).`)
+            }
             const data = await res.json()
             const drinks = Array.isArray(data) ? data : []
             setResults(drinks)
             if (drinks.length === 0) setError('No cocktails found.')
         } catch (err) {
             console.error('Error fetching cocktails: ', err)
-            setError('Error fetching cocktails.')
+            // A failed fetch (network/CORS) is a TypeError; otherwise use the message.
+            setError(err.name === 'TypeError'
+                ? 'Could not reach the server. Please try again.'
+                : err.message || 'Error fetching cocktails.')
+        } finally {
+            setLoading(false)
         }
-        setLoading(false)
     }
 
     const renderDrink = (drink) => {
@@ -156,10 +175,12 @@ function App() {
                 <div className="input-wrapper">
                     <input
                         type="text"
-                        placeholder="Enter an ingredient..."
+                        placeholder={atMax ? `Ingredient limit reached (${MAX_INGREDIENTS})` : 'Enter an ingredient...'}
                         value={input}
                         onChange={handleInputChange}
                         onKeyDown={handleInputKeyDown}
+                        maxLength={MAX_INGREDIENT_LENGTH}
+                        disabled={atMax}
                         role="combobox"
                         aria-expanded={suggestions.length > 0}
                         aria-controls="ingredient-suggestions"
@@ -194,7 +215,7 @@ function App() {
                     type="button"
                     className="add-btn"
                     onClick={() => addIngredient(input)}
-                    disabled={!input.trim()}
+                    disabled={!input.trim() || atMax}
                 >
                     Add ingredient
                 </button>
@@ -205,6 +226,9 @@ function App() {
                     {loading ? 'Searching...' : 'Search'}
                 </button>
             </form>
+            {atMax && (
+                <p className="input-note">You've reached the {MAX_INGREDIENTS}-ingredient limit.</p>
+            )}
             {ingredients.length > 0 && (
                 <div className="ingredient-chips">
                     <span className="inventory-label">Inventory:</span>
