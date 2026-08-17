@@ -5,6 +5,10 @@ import './App.css'
 
 const STORAGE_KEY = 'surprise-me-ingredients'
 
+// Backend API base URL — configurable via VITE_API_URL, with a production
+// fallback so the app still works if no .env is present.
+const API_URL = import.meta.env.VITE_API_URL || 'https://surprise-me-backend.onrender.com'
+
 // Mirror the backend's validation limits so the user gets instant feedback.
 const MAX_INGREDIENTS = 20
 const MAX_INGREDIENT_LENGTH = 60
@@ -123,8 +127,7 @@ function App() {
         setResults([])
         try {
             const res = await fetch(
-                `https://surprise-me-backend.onrender.com/drinks/` +
-                encodeURIComponent(allIngredients.join(','))
+                `${API_URL}/drinks/` + encodeURIComponent(allIngredients.join(','))
             )
             if (!res.ok) {
                 // Show the backend's own message (e.g. "Too many ingredients (max 20).")

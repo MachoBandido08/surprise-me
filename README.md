@@ -47,7 +47,7 @@ The app fetches cocktails from a separate service, [`cocktails.nodejs`](https://
 - **Endpoint:** `GET /drinks/:ingredients` where `:ingredients` is a comma-separated, URL-encoded list.
 - **Example:** `/drinks/tequila,triple%20sec` returns drinks ranked by how much of each you can make, annotated with `makeable` and `missing` fields.
 
-The API base URL is currently set inline in [`src/App.jsx`](src/App.jsx). To point at a local backend, change that URL (moving it to a `.env` variable via `import.meta.env` is a natural improvement).
+The API base URL is configured with the **`VITE_API_URL`** environment variable (see [`.env`](.env) / [`.env.example`](.env.example)). To point at a local backend during development, create a `.env.local` (gitignored) with e.g. `VITE_API_URL=http://localhost:3000`.
 
 ## Project structure
 
