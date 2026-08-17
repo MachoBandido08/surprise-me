@@ -21,7 +21,7 @@ This is the **frontend** (React + Vite). It talks to a separate backend API — 
 
 ## Getting started
 
-**Prerequisites:** [Node.js](https://nodejs.org/) 18+ (Vite 6 requirement).
+**Prerequisites:** [Node.js](https://nodejs.org/) 18+ (Vite 6 requirement). 
 
 ```bash
 # 1. Install dependencies
