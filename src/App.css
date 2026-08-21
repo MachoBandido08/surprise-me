@@ -88,12 +88,20 @@
     .decor { animation: none; }
 }
 
+/* Gradient lives on the root so it always covers the full scrollable page,
+   including mobile overscroll areas where a body `background-attachment: fixed`
+   leaves white gaps (notably iOS Safari). */
+html {
+    min-height: 100%;
+    background: linear-gradient(150deg, var(--sunset-1) 0%, var(--sunset-2) 45%, var(--sunset-3) 100%) no-repeat;
+    background-attachment: fixed;
+}
+
 body {
     min-height: 100vh;
     margin: 0;
     padding: 2.5rem 1rem;
-    background: linear-gradient(150deg, var(--sunset-1) 0%, var(--sunset-2) 45%, var(--sunset-3) 100%);
-    background-attachment: fixed;
+    background: transparent;
     display: flex;
     align-items: flex-start;
     justify-content: center;
