@@ -93,8 +93,10 @@
    leaves white gaps (notably iOS Safari). */
 html {
     min-height: 100%;
+    /* No `background-attachment: fixed` — iOS Safari mishandles it and leaves
+       white gaps. A normal gradient on the root covers the whole page. */
     background: linear-gradient(150deg, var(--sunset-1) 0%, var(--sunset-2) 45%, var(--sunset-3) 100%) no-repeat;
-    background-attachment: fixed;
+    background-size: cover;
 }
 
 body {
