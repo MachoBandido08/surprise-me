@@ -93,9 +93,13 @@
    leaves white gaps (notably iOS Safari). */
 html {
     min-height: 100%;
-    /* Solid orange — one color everywhere, so mobile overscroll and safe-area
-       regions can never show white. Perfectly bulletproof by construction. */
-    background-color: #ffa64d;
+    /* Sunset gradient (gold -> orange -> coral). The solid background-color
+       (the gradient's coral end) fills iOS overscroll/safe-area regions so
+       they show coral, never white. No background-attachment: fixed (iOS). */
+    background-color: var(--sunset-3);
+    background-image: linear-gradient(150deg, var(--sunset-1) 0%, var(--sunset-2) 45%, var(--sunset-3) 100%);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 body {
