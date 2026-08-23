@@ -114,19 +114,25 @@ body {
 #root {
     position: relative;
     z-index: 1;
-    /* Center vertically; auto margins collapse gracefully when the card is
-       taller than the viewport, so tall content is never clipped. */
+    /* Center vertically; auto margins collapse gracefully when content is
+       taller than the viewport, so it's never clipped. */
     margin-block: auto;
+    max-width: 760px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Frosted panel holding the title + description (the search/results sit
+   outside it, directly on the background). */
+.hero-card {
     background: var(--surface);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-lg);
-    padding: 2.5rem 2rem 3rem;
-    max-width: 760px;
-    width: 100%;
-    text-align: center;
+    padding: 2.5rem 2rem;
+    margin-bottom: 1.75rem;
 }
 
 /* ---------- Header ---------- */
@@ -169,7 +175,7 @@ body {
 }
 
 .app-description {
-    margin: 0 auto 2.25rem;
+    margin: 0 auto;
     max-width: 480px;
     color: var(--ink-soft);
     font-size: 1.02rem;
@@ -525,8 +531,8 @@ body {
         padding: 1rem 1.5rem;
     }
 
-    #root {
-        padding: 1.75rem 1.15rem 2.25rem;
+    .hero-card {
+        padding: 1.75rem 1.15rem;
         border-radius: 20px;
     }
 

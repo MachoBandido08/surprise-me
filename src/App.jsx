@@ -180,10 +180,12 @@ function App() {
 
     return (
         <>
-            <div className="title-area"><h1 className="funky-title">Surprise me</h1>
-                <PalmIcon className="img-title-palm"/>
+            <div className="hero-card">
+                <div className="title-area"><h1 className="funky-title">Surprise me</h1>
+                    <PalmIcon className="img-title-palm"/>
+                </div>
+                <p className="app-description">{appDescription}</p>
             </div>
-            <p className="app-description">{appDescription}</p>
             <form className="search-bar" onSubmit={searchCocktails}>
                 <div className="input-wrapper">
                     <input
