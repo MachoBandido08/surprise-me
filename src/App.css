@@ -95,7 +95,7 @@ html {
     min-height: 100%;
     /* Solid orange — one color everywhere, so mobile overscroll and safe-area
        regions can never show white. Perfectly bulletproof by construction. */
-    background-color: #ff8c42;
+    background-color: #ffa64d;
 }
 
 body {
