@@ -53,7 +53,7 @@ function App() {
             .slice(0, 6)
         : []
 
-    const appDescription = `This app helps you find cocktails based on the ingredients you already have. Add one or more ingredients, and we'll show you a list of cocktails you can make with them. Your ingredients are saved automatically, so they'll still be here when you close your browser and come back later.`;
+    const appDescription = `This app helps you find cocktails based on the ingredients you already have. Add one or more ingredients, and we'll show you a list of cocktails you can make with them.`;
 
     const atMax = ingredients.length >= MAX_INGREDIENTS
 
