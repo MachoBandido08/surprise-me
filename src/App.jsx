@@ -188,7 +188,7 @@ function App() {
                 <div className="input-wrapper">
                     <input
                         type="text"
-                        placeholder={atMax ? `Ingredient limit reached (${MAX_INGREDIENTS})` : 'Enter an ingredient...'}
+                        placeholder={atMax ? `Ingredient limit reached (${MAX_INGREDIENTS})` : 'Enter an ingredient (e.g. rum)...'}
                         value={input}
                         onChange={handleInputChange}
                         onKeyDown={handleInputKeyDown}
