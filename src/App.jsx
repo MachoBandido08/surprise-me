@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react'
-import {COMMON_INGREDIENTS} from './ingredients.js'
+import {COMMON_INGREDIENTS, INGREDIENT_ALIASES} from './ingredients.js'
 import {PLACEHOLDER_IMG} from './placeholder.js'
 import PalmIcon from './PalmIcon.jsx'
 import './App.css'
@@ -49,7 +49,10 @@ function App() {
     const query = input.trim().toLowerCase()
     const suggestions = query
         ? COMMON_INGREDIENTS
-            .filter(item => item.includes(query) && !ingredients.includes(item))
+            .filter(item =>
+                (item.includes(query) ||
+                    (INGREDIENT_ALIASES[item] || []).some(alias => alias.includes(query))) &&
+                !ingredients.includes(item))
             .slice(0, 6)
         : []
 

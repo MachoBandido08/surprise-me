@@ -13,3 +13,13 @@ export const COMMON_INGREDIENTS = [
     'peach', 'apple juice', 'prosecco', 'champagne', 'red wine', 'white wine',
     'beer', 'coffee liqueur', 'peach schnapps', 'melon liqueur',
 ]
+
+// Other names people type for an ingredient above. Typing an alias suggests
+// the real ingredient, which is the name the backend data actually matches.
+export const INGREDIENT_ALIASES = {
+    'cola': ['coke', 'coca-cola', 'pepsi'],
+    'soda water': ['club soda', 'sparkling water', 'seltzer'],
+    'whiskey': ['whisky'],
+    'sprite': ['7up', '7-up', 'lemon-lime soda'],
+    'egg white': ['egg whites'],
+}
