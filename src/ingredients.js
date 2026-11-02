@@ -1,6 +1,6 @@
 // Common cocktail ingredients used to suggest options while typing.
 export const COMMON_INGREDIENTS = [
-    'vodka', 'gin', 'white rum', 'dark rum', 'tequila', 'whiskey', 'bourbon',
+    'vodka', 'gin', 'rum', 'white rum', 'dark rum', 'tequila', 'whiskey', 'bourbon',
     'scotch', 'brandy', 'cognac', 'triple sec', 'cointreau', 'vermouth',
     'dry vermouth', 'sweet vermouth', 'campari', 'aperol', 'amaretto',
     'kahlua', 'baileys', 'blue curacao', 'grenadine', 'angostura bitters',
