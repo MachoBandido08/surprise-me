@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react'
-import {COMMON_INGREDIENTS, INGREDIENT_ALIASES} from './ingredients.js'
+import {COMMON_INGREDIENTS, INGREDIENT_ALIASES, normalizeIngredient} from './ingredients.js'
 import {PLACEHOLDER_IMG} from './placeholder.js'
 import PalmIcon from './PalmIcon.jsx'
 import './App.css'
@@ -18,7 +18,9 @@ const MAX_INGREDIENT_LENGTH = 60
 const loadIngredients = () => {
     try {
         const saved = JSON.parse(localStorage.getItem(STORAGE_KEY))
-        return Array.isArray(saved) ? saved : []
+        return Array.isArray(saved)
+            ? [...new Set(saved.map(normalizeIngredient).filter(Boolean))]
+            : []
     } catch {
         return []
     }
@@ -61,7 +63,7 @@ function App() {
     const atMax = ingredients.length >= MAX_INGREDIENTS
 
     const addIngredient = (value) => {
-        const trimmed = value.trim().toLowerCase()
+        const trimmed = normalizeIngredient(value)
         if (
             trimmed &&
             trimmed.length <= MAX_INGREDIENT_LENGTH &&
@@ -104,8 +106,9 @@ function App() {
     const searchCocktails = async (e) => {
         e.preventDefault()
         // Include anything still typed but not yet added as a chip
-        const allIngredients = input.trim()
-            ? [...ingredients, input.trim().toLowerCase()]
+        const typed = normalizeIngredient(input)
+        const allIngredients = typed && !ingredients.includes(typed)
+            ? [...ingredients, typed]
             : ingredients
         if (allIngredients.length === 0) return
         setInput('')

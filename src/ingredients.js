@@ -23,3 +23,16 @@ export const INGREDIENT_ALIASES = {
     'sprite': ['7up', '7-up', 'lemon-lime soda'],
     'egg white': ['egg whites'],
 }
+
+// alias -> real ingredient name, e.g. 'coke' -> 'cola'
+const ALIAS_TO_INGREDIENT = Object.fromEntries(
+    Object.entries(INGREDIENT_ALIASES).flatMap(([name, aliases]) =>
+        aliases.map(alias => [alias, name]))
+)
+
+// Normalize what the user typed: trim, lowercase, and swap an alias for the
+// real ingredient name so the backend can match it.
+export const normalizeIngredient = (value) => {
+    const cleaned = (value || '').trim().toLowerCase()
+    return ALIAS_TO_INGREDIENT[cleaned] || cleaned
+}
