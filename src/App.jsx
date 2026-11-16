@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react'
-import {COMMON_INGREDIENTS, INGREDIENT_ALIASES, normalizeIngredient} from './ingredients.js'
+import {getSuggestions, normalizeIngredient} from './ingredients.js'
 import {PLACEHOLDER_IMG} from './placeholder.js'
 import PalmIcon from './PalmIcon.jsx'
 import './App.css'
@@ -48,15 +48,7 @@ function App() {
         }
     }, [activeIndex])
 
-    const query = input.trim().toLowerCase()
-    const suggestions = query
-        ? COMMON_INGREDIENTS
-            .filter(item =>
-                (item.includes(query) ||
-                    (INGREDIENT_ALIASES[item] || []).some(alias => alias.includes(query))) &&
-                !ingredients.includes(item))
-            .slice(0, 6)
-        : []
+    const suggestions = getSuggestions(input, ingredients)
 
     const appDescription = `This app helps you find cocktails based on the ingredients you already have. Add one or more ingredients, and we'll show you a list of cocktails you can make with them.`;
 

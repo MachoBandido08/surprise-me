@@ -36,3 +36,16 @@ export const normalizeIngredient = (value) => {
     const cleaned = (value || '').trim().toLowerCase()
     return ALIAS_TO_INGREDIENT[cleaned] || cleaned
 }
+
+// Suggestions for what the user is typing: known ingredients whose name (or
+// one of their aliases) contains the text, minus the ones already added.
+export const getSuggestions = (text, selected = [], limit = 6) => {
+    const query = (text || '').trim().toLowerCase()
+    if (!query) return []
+    return COMMON_INGREDIENTS
+        .filter(item =>
+            (item.includes(query) ||
+                (INGREDIENT_ALIASES[item] || []).some(alias => alias.includes(query))) &&
+            !selected.includes(item))
+        .slice(0, limit)
+}
