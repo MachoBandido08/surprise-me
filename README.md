@@ -1,6 +1,6 @@
 # Surprise Me 🌴
 
-A cocktail finder: tell it which ingredients you have, and it shows you drinks you can make — putting the ones you can make *right now* first, and "almost there" drinks (missing an ingredient or two) below.
+A cocktail finder: tell it which ingredients you have, and it shows you drinks you can make — putting the ones you can make _right now_ first, and "almost there" drinks (missing an ingredient or two) below.
 
 This is the **frontend** (React + Vite). It talks to a separate backend API — see [Backend](#backend).
 
@@ -21,7 +21,7 @@ This is the **frontend** (React + Vite). It talks to a separate backend API — 
 
 ## Getting started
 
-**Prerequisites:** [Node.js](https://nodejs.org/) 18+ (Vite 6 requirement). 
+**Prerequisites:** [Node.js](https://nodejs.org/) 18+ (Vite 6 requirement).
 
 ```bash
 # 1. Install dependencies
@@ -33,12 +33,12 @@ npm run dev
 
 ### Available scripts
 
-| Command | What it does |
-|---|---|
-| `npm run dev` | Start the dev server with hot reload |
-| `npm run build` | Build the production bundle into `dist/` |
-| `npm run preview` | Serve the built `dist/` locally |
-| `npm run lint` | Run ESLint |
+| Command           | What it does                             |
+| ----------------- | ---------------------------------------- |
+| `npm run dev`     | Start the dev server with hot reload     |
+| `npm run build`   | Build the production bundle into `dist/` |
+| `npm run preview` | Serve the built `dist/` locally          |
+| `npm run lint`    | Run ESLint                               |
 
 ## Backend
 

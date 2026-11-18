@@ -11,5 +11,5 @@ export const PLACEHOLDER_IMG =
                 <line x1="37" y1="80" x2="63" y2="80"/>
                 <circle cx="63" cy="27" r="4"/>
             </g>
-        </svg>`
+        </svg>`,
     )
