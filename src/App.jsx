@@ -42,15 +42,13 @@ function App() {
     // Keep the keyboard-highlighted suggestion scrolled into view.
     useEffect(() => {
         if (activeIndex >= 0) {
-            document
-                .getElementById(`suggestion-${activeIndex}`)
-                ?.scrollIntoView({block: 'nearest'})
+            document.getElementById(`suggestion-${activeIndex}`)?.scrollIntoView({block: 'nearest'})
         }
     }, [activeIndex])
 
     const suggestions = getSuggestions(input, ingredients)
 
-    const appDescription = `This app helps you find cocktails based on the ingredients you already have. Add one or more ingredients, and we'll show you a list of cocktails you can make with them.`;
+    const appDescription = `This app helps you find cocktails based on the ingredients you already have. Add one or more ingredients, and we'll show you a list of cocktails you can make with them.`
 
     const atMax = ingredients.length >= MAX_INGREDIENTS
 
@@ -69,7 +67,7 @@ function App() {
     }
 
     const removeIngredient = (value) => {
-        setIngredients(ingredients.filter(item => item !== value))
+        setIngredients(ingredients.filter((item) => item !== value))
     }
 
     const handleInputChange = (e) => {
@@ -81,11 +79,11 @@ function App() {
         if (e.key === 'ArrowDown' && suggestions.length > 0) {
             // Move highlight down (wraps to the top)
             e.preventDefault()
-            setActiveIndex(prev => (prev + 1) % suggestions.length)
+            setActiveIndex((prev) => (prev + 1) % suggestions.length)
         } else if (e.key === 'ArrowUp' && suggestions.length > 0) {
             // Move highlight up (wraps to the bottom)
             e.preventDefault()
-            setActiveIndex(prev => (prev <= 0 ? suggestions.length - 1 : prev - 1))
+            setActiveIndex((prev) => (prev <= 0 ? suggestions.length - 1 : prev - 1))
         } else if (e.key === 'Escape') {
             setActiveIndex(-1)
         } else if (e.key === 'Enter' || e.key === ',') {
@@ -99,9 +97,8 @@ function App() {
         e.preventDefault()
         // Include anything still typed but not yet added as a chip
         const typed = normalizeIngredient(input)
-        const allIngredients = typed && !ingredients.includes(typed)
-            ? [...ingredients, typed]
-            : ingredients
+        const allIngredients =
+            typed && !ingredients.includes(typed) ? [...ingredients, typed] : ingredients
         if (allIngredients.length === 0) return
         setInput('')
         setIngredients(allIngredients)
@@ -110,7 +107,7 @@ function App() {
         setResults([])
         try {
             const res = await fetch(
-                `${API_URL}/drinks/` + encodeURIComponent(allIngredients.join(','))
+                `${API_URL}/drinks/` + encodeURIComponent(allIngredients.join(',')),
             )
             if (!res.ok) {
                 // Show the backend's own message (e.g. "Too many ingredients (max 20).")
@@ -124,9 +121,11 @@ function App() {
         } catch (err) {
             console.error('Error fetching cocktails: ', err)
             // A failed fetch (network/CORS) is a TypeError; otherwise use the message.
-            setError(err.name === 'TypeError'
-                ? 'Could not reach the server. Please try again.'
-                : err.message || 'Error fetching cocktails.')
+            setError(
+                err.name === 'TypeError'
+                    ? 'Could not reach the server. Please try again.'
+                    : err.message || 'Error fetching cocktails.',
+            )
         } finally {
             setLoading(false)
         }
@@ -150,20 +149,35 @@ function App() {
                 <div>
                     <div className="cocktail-card-header">
                         <h2>{drink.name}</h2>
-                        {drink.makeable
-                            ? <span className="badge badge-ready">✓ You have everything</span>
-                            : missing.length > 0 &&
-                            <span className="badge badge-missing">Missing {missing.length}</span>}
+                        {drink.makeable ? (
+                            <span className="badge badge-ready">✓ You have everything</span>
+                        ) : (
+                            missing.length > 0 && (
+                                <span className="badge badge-missing">
+                                    Missing {missing.length}
+                                </span>
+                            )
+                        )}
                     </div>
                     <p className="cocktail-card-instructions">{drink.instructions}</p>
-                    <p className="ingredients-title"><strong>Ingredients</strong></p>
+                    <p className="ingredients-title">
+                        <strong>Ingredients</strong>
+                    </p>
                     {drink.ingredients && drink.ingredients.length > 0 && (
                         <ul className="cocktail-card-ingredients-list">
                             {drink.ingredients.map((ingredient, index) => (
-                                <li key={index}
-                                    className={missingSet.has(ingredient.name) ? 'ingredient-missing' : undefined}>
+                                <li
+                                    key={index}
+                                    className={
+                                        missingSet.has(ingredient.name)
+                                            ? 'ingredient-missing'
+                                            : undefined
+                                    }
+                                >
                                     {ingredient.quantity} {ingredient.name}
-                                    {missingSet.has(ingredient.name) && <span className="need-tag"> — need</span>}
+                                    {missingSet.has(ingredient.name) && (
+                                        <span className="need-tag"> — need</span>
+                                    )}
                                 </li>
                             ))}
                         </ul>
@@ -173,20 +187,25 @@ function App() {
         )
     }
 
-    const makeableDrinks = results.filter(d => d.makeable)
-    const partialDrinks = results.filter(d => !d.makeable)
+    const makeableDrinks = results.filter((d) => d.makeable)
+    const partialDrinks = results.filter((d) => !d.makeable)
 
     return (
         <>
-            <div className="title-area"><h1 className="funky-title">Surprise me</h1>
-                <PalmIcon className="img-title-palm"/>
+            <div className="title-area">
+                <h1 className="funky-title">Surprise me</h1>
+                <PalmIcon className="img-title-palm" />
             </div>
             <p className="app-description">{appDescription}</p>
             <form className="search-bar" onSubmit={searchCocktails}>
                 <div className="input-wrapper">
                     <input
                         type="text"
-                        placeholder={atMax ? `Ingredient limit reached (${MAX_INGREDIENTS})` : 'Enter an ingredient (e.g. rum)...'}
+                        placeholder={
+                            atMax
+                                ? `Ingredient limit reached (${MAX_INGREDIENTS})`
+                                : 'Enter an ingredient (e.g. rum)...'
+                        }
                         value={input}
                         onChange={handleInputChange}
                         onKeyDown={handleInputKeyDown}
@@ -243,7 +262,7 @@ function App() {
             {ingredients.length > 0 && (
                 <div className="ingredient-chips">
                     <span className="inventory-label">Inventory:</span>
-                    {ingredients.map(ingredient => (
+                    {ingredients.map((ingredient) => (
                         <span className="ingredient-chip" key={ingredient}>
                             {ingredient}
                             <button

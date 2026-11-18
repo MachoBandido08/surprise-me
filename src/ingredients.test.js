@@ -38,7 +38,9 @@ describe('getSuggestions', () => {
 
     test('matches by partial name, case-insensitively', () => {
         expect(getSuggestions('VOD')).toContain('vodka')
-        expect(getSuggestions('rum')).toEqual(expect.arrayContaining(['rum', 'white rum', 'dark rum']))
+        expect(getSuggestions('rum')).toEqual(
+            expect.arrayContaining(['rum', 'white rum', 'dark rum']),
+        )
     })
 
     test('typing an alias suggests the real ingredient', () => {
